@@ -15,8 +15,14 @@ data = {
 }
 
 
-def stock():
+def stock(state):
     print("Hey, hello stock analyst")
+    print(state.company_name)
+    print(state.min_price)
+    print(state.max_price)
+
+    with open("data.txt", "w") as f:
+        f.write(f"{state.company_name},{state.min_price},{state.max_price}")
 
 
 page = """
@@ -37,7 +43,7 @@ Max Price: <|{max_price}|input|>
 
 <|{title}|hover_text="Your Simulation"|>
 
-<|{data}|chart|mode=lines|x=Date|y[1]=Temp°C|y[2]=Min|y[3]=Max|line[1]=dash|color[2]=blue|color[3]=red|>
+<|{data}|chart|mode=lines|x=Date|y[1]=Min|y[2]=Max|line[1]=dash|color[2]=blue|>
 """
 
 if __name__ == "__main__":
